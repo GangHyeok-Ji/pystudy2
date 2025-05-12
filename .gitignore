@@ -3,3 +3,4 @@
 chroma/
 .venv/
 .vscode/
+streamlit/venv/
