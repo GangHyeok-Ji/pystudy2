@@ -4,3 +4,6 @@ chroma/
 .venv/
 .vscode/
 streamlit/venv/
+streamlit/.python-version
+streamlit/__pycache__/
+.DS_Store
