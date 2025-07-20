@@ -61,9 +61,9 @@ def get_rag_chain():
         ]
     )
 
-    contextualize_q_llm = llm.with_config(tags=["contextualize_q_llm"])
+    #contextualize_q_llm = llm.with_config(tags=["contextualize_q_llm"])
     history_aware_retriever = create_history_aware_retriever(
-        contextualize_q_llm, retriever, contextualize_q_prompt
+        llm, retriever, contextualize_q_prompt
     )
 
     system_prompt = (
@@ -86,15 +86,6 @@ def get_rag_chain():
 
     rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
- 
-
-    store = {}
-
-    def get_session_history(session_id: str) -> BaseChatMessageHistory:
-        if session_id not in store:
-            store[session_id] = ChatMessageHistory()
-        return store[session_id]
-
     conversational_rag_chain = RunnableWithMessageHistory(
         rag_chain,
         get_session_history,
@@ -103,7 +94,16 @@ def get_rag_chain():
         output_messages_key="answer",
     ).pick('answer')
 
-    return conversational_rag_chain
+    return conversational_rag_chain 
+
+
+store = {}
+
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    if session_id not in store:
+        store[session_id] = ChatMessageHistory()
+    return store[session_id]
+
 
 def get_ai_response(user_message):
 
