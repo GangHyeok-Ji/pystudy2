@@ -67,7 +67,7 @@ langchain==0.3.23
 langchain-chroma==0.2.2
 langchain-community==0.3.21
 langchain-core==0.3.51
-langchain-openai==0.3.12
+langchain-openai==0.3.12 
 langchain-pinecone==0.2.5
 langchain-tests==0.3.17
 langchain-text-splitters==0.3.8
